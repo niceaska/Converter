@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Converter</string>
+    <string name="mile">Миля</string>
+    <string name="kilometr">Километр</string>
+    <string name="metr">Метр</string>
+    <string name="mikrometr">Микрометр</string>
+    <string name="santimeter">Сантиметр</string>
+    <string name="milimetr">Милиметр</string>
+    <string-array name="units">
+        <item>Площадь</item>
+        <item>Кулинария</item>
+        <item>Валюта</item>
+        <item>Данные</item>
+        <item>Энергия</item>
+        <item>Топливо</item>
+        <item>Длина</item>
+        <item>Масса</item>
+        <item>Мощность</item>
+        <item>Давление</item>
+        <item>Скорость</item>
+        <item>Температура</item>
+        <item>Время</item>
+        <item>Объем</item>
+    </string-array>
+</resources>
