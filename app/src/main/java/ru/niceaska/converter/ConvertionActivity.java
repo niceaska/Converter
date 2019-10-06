@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ConvertionActivity extends Activity {
 
@@ -56,9 +57,9 @@ public class ConvertionActivity extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 converterHelper.setPositionFrom(position);
                 if (focusOnFrom) {
-                    convertionSet(editTextFrom.getText().toString(), editTextTo);
+                    convertionSet(editTextFrom.getText().toString(), editTextTo, false);
                 } else if (focusOnTo) {
-                    convertionSet(editTextFrom.getText().toString(), editTextFrom);
+                    convertionSet(editTextFrom.getText().toString(), editTextFrom, true);
 
                 }
             }
@@ -74,9 +75,9 @@ public class ConvertionActivity extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 converterHelper.setPositionTo(position);
                 if (focusOnFrom) {
-                    convertionSet(editTextFrom.getText().toString(), editTextTo);
+                    convertionSet(editTextFrom.getText().toString(), editTextTo, false);
                 } else if (focusOnTo) {
-                    convertionSet(editTextFrom.getText().toString(), editTextFrom);
+                    convertionSet(editTextFrom.getText().toString(), editTextFrom, true);
 
                 }
             }
@@ -105,13 +106,12 @@ public class ConvertionActivity extends Activity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (focusOnTo) {
-                    convertionSet(s.toString(), editTextFrom);
+                    convertionSet(s.toString(), editTextFrom, true);
                 }
             }
 
@@ -131,7 +131,7 @@ public class ConvertionActivity extends Activity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (focusOnFrom) {
-                    convertionSet(s.toString(), editTextTo);
+                    convertionSet(s.toString(), editTextTo, false);
                 }
             }
 
@@ -142,13 +142,14 @@ public class ConvertionActivity extends Activity {
         });
     }
 
-    private void convertionSet(String s, EditText editText) {
+    private void convertionSet(String s, EditText editText, boolean reversePos) {
         try {
-            double result = converterHelper.convert(Double.parseDouble(s));
-            editText.setText(String.format("%.2f", result));
+            double result = converterHelper.convert(Double.parseDouble(s), reversePos);
+            editText.setText(String.format(Locale.US, "%.2f", result));
         } catch (NumberFormatException e) {
             editText.setText("");
         }
     }
+
 
 }

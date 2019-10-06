@@ -11,6 +11,7 @@ public class ConverterHelper {
     private Context context;
     private int positionFrom;
     private int positionTo;
+    private boolean isPositionChanged = false;
 
     public void setPositionFrom(int positionFrom) {
         this.positionFrom = positionFrom;
@@ -34,9 +35,12 @@ public class ConverterHelper {
         return vals;
     }
 
-    double convert(double valFrom) {
-        double convToBase = valFrom * units.get(positionFrom)
+    double convert(double valFrom, boolean reversePosition) {
+        int posFrom = (reversePosition) ? positionTo : positionFrom;
+        int posTo = (reversePosition) ? positionFrom : positionTo;
+        double convToBase = valFrom * units.get(posFrom)
                                             .getConvertionFrom();
-        return convToBase * units.get(positionTo).getConvertT0();
+        return convToBase * units.get(posTo).getConvertT0();
     }
+
 }
