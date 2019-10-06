@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.List;
-import java.util.Locale;
 
 public class ConvertionActivity extends Activity {
 
@@ -20,12 +19,12 @@ public class ConvertionActivity extends Activity {
     private ConverterHelper converterHelper;
     private EditText editTextFrom;
     private EditText editTextTo;
+    boolean focusOnFrom = false;
+    boolean focusOnTo = false;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convertion);
-
-
         initSpinners();
     }
 
@@ -35,8 +34,9 @@ public class ConvertionActivity extends Activity {
         Spinner spinnerFrom = findViewById(R.id.spinner_from);
         Spinner spinnerTo = findViewById(R.id.spinner_to);
 
+
         Intent intent = getIntent();
-        Value val = (Value) intent.getSerializableExtra("test");
+        Value val = (Value) intent.getSerializableExtra(getResources().getString(R.string.intent_flag));
 
         if (val == null) return;
 
@@ -55,7 +55,12 @@ public class ConvertionActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 converterHelper.setPositionFrom(position);
-                convertionSet(editTextFrom.getText().toString());
+                if (focusOnFrom) {
+                    convertionSet(editTextFrom.getText().toString(), editTextTo);
+                } else if (focusOnTo) {
+                    convertionSet(editTextFrom.getText().toString(), editTextFrom);
+
+                }
             }
 
             @Override
@@ -68,7 +73,12 @@ public class ConvertionActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 converterHelper.setPositionTo(position);
-                convertionSet(editTextFrom.getText().toString());
+                if (focusOnFrom) {
+                    convertionSet(editTextFrom.getText().toString(), editTextTo);
+                } else if (focusOnTo) {
+                    convertionSet(editTextFrom.getText().toString(), editTextFrom);
+
+                }
             }
 
             @Override
@@ -76,7 +86,40 @@ public class ConvertionActivity extends Activity {
 
             }
         });
-        editTextTo.setEnabled(false);
+
+        editTextFrom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                focusOnFrom = hasFocus;
+            }
+        });
+
+        editTextTo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                focusOnTo = hasFocus;
+            }
+        });
+
+        editTextTo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (focusOnTo) {
+                    convertionSet(s.toString(), editTextFrom);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         editTextFrom.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,7 +130,9 @@ public class ConvertionActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                convertionSet(s.toString());
+                if (focusOnFrom) {
+                    convertionSet(s.toString(), editTextTo);
+                }
             }
 
             @Override
@@ -97,12 +142,12 @@ public class ConvertionActivity extends Activity {
         });
     }
 
-    private void convertionSet(String s) {
+    private void convertionSet(String s, EditText editText) {
         try {
             double result = converterHelper.convert(Double.parseDouble(s));
-            editTextTo.setText(String.format("%.2f", result));
+            editText.setText(String.format("%.2f", result));
         } catch (NumberFormatException e) {
-            editTextTo.setText("");
+            editText.setText("");
         }
     }
 

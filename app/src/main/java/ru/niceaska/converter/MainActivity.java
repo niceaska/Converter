@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Value item) {
                 Intent intent = new Intent(MainActivity.this, ConvertionActivity.class);
-                intent.putExtra("test", item);
+                intent.putExtra(getResources().getString(R.string.intent_flag), item);
                 startActivity(intent);
 
             }
