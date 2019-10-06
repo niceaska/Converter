@@ -32,7 +32,7 @@ public class ConverterValuesAdapter extends RecyclerView.Adapter<ConverterValues
     @Override
     public ConverterValuesAdapter.ConvertValuesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.covert_item, parent, false);
+                .inflate(R.layout.convert_item, parent, false);
         return new ConvertValuesHolder(view);
     }
 
@@ -50,13 +50,12 @@ public class ConverterValuesAdapter extends RecyclerView.Adapter<ConverterValues
             value = itemView.findViewById(R.id.convert_item);
         }
 
-        public void bindOnClick(final String name, final Value item, final IMyOnClickMethod listener) {
+        void bindOnClick(final String name, final Value item, final IMyOnClickMethod listener) {
 
             value.setText(name);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     listener.onItemClick(item);
                 }
             });

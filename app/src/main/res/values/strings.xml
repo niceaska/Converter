@@ -6,6 +6,8 @@
     <string name="mikrometr">Микрометр</string>
     <string name="santimeter">Сантиметр</string>
     <string name="milimetr">Милиметр</string>
+    <string name="from">Откуда</string>
+    <string name="to">Куда</string>
     <string-array name="units">
         <item>Площадь</item>
         <item>Кулинария</item>

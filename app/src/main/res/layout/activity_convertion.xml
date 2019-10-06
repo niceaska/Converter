@@ -8,67 +8,58 @@
 
     <EditText
         android:id="@+id/convertFrom"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@id/convertFrom"
         app:layout_constraintStart_toEndOf="@+id/spinner_from"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.5" />
+        app:layout_constraintWidth_percent="0.5"
+        style="@style/ftom_style" />
 
     <TextView
         android:id="@+id/textViewFrom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Из"
-        android:textSize="30sp"
+        android:text="@string/from"
         app:layout_constraintEnd_toStartOf="@+id/textViewTo"
 
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/convertFrom"
-        app:layout_constraintWidth_percent="0.5" />
+        app:layout_constraintWidth_percent="0.5"
+        style="@style/textViewFrom" />
+
     <Spinner
         android:id="@+id/spinner_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/convertFrom" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.755"
+
+        app:layout_constraintStart_toEndOf="@+id/spinner_from"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTo" />
 
     <EditText
         android:id="@+id/convertTo"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:inputType="textPersonName"
-        app:layout_constraintWidth_percent="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/convertFrom"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5"
+        style="@style/convertTo" />
 
     <TextView
         android:id="@+id/textViewTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="В"
-        android:textSize="30sp"
+        android:text="@string/to"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinner_to"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/convertFrom"
+        app:layout_constraintStart_toStartOf="@+id/convertTo"
         app:layout_constraintTop_toBottomOf="@+id/convertTo"
-        />
+        style="@style/textViewTo" />
 
     <Spinner
         android:id="@+id/spinner_from"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/convertTo" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textViewFrom" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

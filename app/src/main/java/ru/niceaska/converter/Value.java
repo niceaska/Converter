@@ -11,7 +11,7 @@ public enum Value {
     STORAGE(Collections.<Unit>emptyList()),
     ENERGY(Collections.<Unit>emptyList()),
     FUEL(Collections.<Unit>emptyList()),
-    LENGTH(Arrays.asList(Unit.MILE, Unit.KILOMETR, Unit.METRE)),
+    LENGTH(Arrays.asList(Unit.MILE, Unit.KILOMETR, Unit.METRE, Unit.CENTIMETR, Unit.MILIIMETR, Unit.MICROMETR)),
     MASS(Collections.<Unit>emptyList()),
     POWER(Collections.<Unit>emptyList()),
     PRRESSURE(Collections.<Unit>emptyList()),
