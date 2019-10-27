@@ -11,7 +11,6 @@ public class ConverterHelper {
     private Context context;
     private int positionFrom;
     private int positionTo;
-    private boolean isPositionChanged = false;
 
     public void setPositionFrom(int positionFrom) {
         this.positionFrom = positionFrom;
